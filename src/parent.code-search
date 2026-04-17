@@ -1,0 +1,420 @@
+# Query: parent
+# ContextLines: 1
+
+117 results - 54 files
+
+backend\bun.lock:
+  365  
+  366:     "chokidar": ["chokidar@3.6.0", "", { "dependencies": { "anymatch": "~3.1.2", "braces": "~3.0.2", "glob-parent": "~5.1.2", "is-binary-path": "~2.1.0", "is-glob": "~4.0.1", "normalize-path": "~3.0.0", "readdirp": "~3.6.0" }, "optionalDependencies": { "fsevents": "~2.3.2" } }, "sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw=="],
+  367  
+
+  457  
+  458:     "glob-parent": ["glob-parent@5.1.2", "", { "dependencies": { "is-glob": "^4.0.1" } }, "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow=="],
+  459  
+
+backend\package-lock.json:
+  5761          "braces": "~3.0.2",
+  5762:         "glob-parent": "~5.1.2",
+  5763          "is-binary-path": "~2.1.0",
+
+  6477      },
+  6478:     "node_modules/glob-parent": {
+  6479        "version": "5.1.2",
+  6480:       "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz",
+  6481        "integrity": "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==",
+
+backend\src\types.ts:
+  75    _id: string;
+  76:   name: string; // 'admin', 'teacher', 'student', 'parent'
+  77    label?: string; // display name
+
+backend\src\controllers\activitieslog.ts:
+   6  // @route   GET /api/activities
+   7: // @access  Private (Admin, Teacher, Parent)
+   8  export const getAllActivities = async (
+
+  31        filter = {}; // we'll handle in aggregation pipeline
+  32:     } else if (currentUser.role === "mentor") {
+  33:       // Parent sees logs of students and teachers
+  34        filter = {}; // handled in aggregation
+
+  56        pipeline.push({ $match: { "targetUser.role": "student" } });
+  57:     } else if (currentUser.role === "mentor") {
+  58        pipeline.push({
+
+backend\src\models\user.ts:
+   7    STUDENT = "student",
+   8:   MENTOR = "mentor",
+   9  }
+  10  
+  11: export type userRoles = "admin" | "teacher" | "student" | "mentor";
+  12  
+
+backend\src\routes\activitieslog.ts:
+  7  
+  8: LogsRouter.get("/", protect, authorize(["admin", "teacher", "mentor"]), getAllActivities);
+  9  
+
+backend\src\routes\analytics.ts:
+  7  analyticsRouter.get("/class/:classId", protect, authorize(["teacher", "admin"]), getClassAnalytics);
+  8: analyticsRouter.get("/student/:studentId", protect, authorize(["student", "mentor", "teacher"]), getStudentAnalytics);
+  9  
+
+frontend\bun.lock:
+  529  
+  530: ⟪ 580 characters skipped ⟫scope": "^8.4.0", "eslint-visitor-keys": "^4.2.1", "espree": "^10.4.0", "esquery": "^1.5.0", "esutils": "^2.0.2", "fast-deep-equal": "^3.1.3", "file-entry-cache": "^8.0.0", "find-up": "^5.0.0", "glob-parent": "^6.0.2", "ignore": "^5.2.0", "imurmurhash": "^0.1.4", "is-glob": "^4.0.0", "json-stable-stringify-without-jsonify": "^1.0.1", "lodash.merge": "^4.6.2", "minimatch": "^3.1.2", "natural-compare": "^1.4.0", "optionator": "^0.9.3" }, "peerDependencies": { "jiti": "*" }, "optionalPeers": ["jiti"], "bin": { "eslint": "bin/eslint.js" } }, "sha512-LEyamqS7W5HB3ujJyvi0HQK/dtVINZvd5mAAp9eT5S/ujByGjiZLCzPcHVzuXbpJDJF/cxwHlfceVUDZ2lnSTw=="],
+  531  
+
+  585  
+  586:     "glob-parent": ["glob-parent@6.0.2", "", { "dependencies": { "is-glob": "^4.0.3" } }, "sha512-XxwI8EOhVQgWp6iDL+3b0r86f4d6AX6zSU55HfB4ydCEuXLXc5FcYeOu+nnGftS4TEju/11rt4KJPTMgbfmv4A=="],
+  587  
+
+  607  
+  608:     "import-fresh": ["import-fresh@3.3.1", "", { "dependencies": { "parent-module": "^1.0.0", "resolve-from": "^4.0.0" } }, "sha512-TR3KfrTZTYLPB6jUjfx6MF9WcWrHL9su5TObK4ZkYgBdWKPOFoSoQIdEuTuR82pmtxH2spWG9h6etwfr1pLBqQ=="],
+  609  
+
+  705  
+  706:     "parent-module": ["parent-module@1.0.1", "", { "dependencies": { "callsites": "^3.0.0" } }, "sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g=="],
+  707  
+
+frontend\package-lock.json:
+  4083          "find-up": "^5.0.0",
+  4084:         "glob-parent": "^6.0.2",
+  4085          "ignore": "^5.2.0",
+
+  4460      },
+  4461:     "node_modules/glob-parent": {
+  4462        "version": "6.0.2",
+  4463:       "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-6.0.2.tgz",
+  4464        "integrity": "sha512-XxwI8EOhVQgWp6iDL+3b0r86f4d6AX6zSU55HfB4ydCEuXLXc5FcYeOu+nnGftS4TEju/11rt4KJPTMgbfmv4A==",
+
+  4607        "dependencies": {
+  4608:         "parent-module": "^1.0.0",
+  4609          "resolve-from": "^4.0.0"
+
+  5249      },
+  5250:     "node_modules/parent-module": {
+  5251        "version": "1.0.1",
+  5252:       "resolved": "https://registry.npmjs.org/parent-module/-/parent-module-1.0.1.tgz",
+  5253        "integrity": "sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==",
+
+frontend\src\types.ts:
+  1: export type UserRole = "admin" | "teacher" | "student" | "mentor";
+  2  
+
+frontend\src\components\dashboard\ai-insight-widget.tsx:
+  47        {/* Decorative background pattern */}
+  48:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  49  
+
+frontend\src\components\home\About.tsx:
+  113          {/* Live Classes CTA */}
+  114:         <div className="relative bg-gradient-to-r from-primary/10 via-primary/5 to-transparent rounded-2xl overflow-hidden mb-24">
+  115            <div className="flex flex-col md:flex-row items-center gap-8 p-8 md:p-12">
+
+frontend\src\components\home\Community.tsx:
+  59        name: "Fatima Diallo",
+  60:       role: "Parent, Senegal",
+  61        comment:
+
+frontend\src\components\home\Footer.tsx:
+  6        {/* Decorative background pattern */}
+  7:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  8  
+
+frontend\src\components\home\Hero.tsx:
+   20        {/* Subtle background – clean with minimal noise */}
+   21:       <div className="absolute inset-0 bg-[radial-gradient(var(--border)_1px,transparent_1px)] [background-size:32px_32px] opacity-20"></div>
+   22  
+
+  131                  />
+  132:                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+  133  
+
+frontend\src\components\home\Impact.tsx:
+  4        {/* Decorative elements */}
+  5:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.02] pointer-events-none" />
+  6        <div className="absolute top-0 right-0 w-1/3 h-full bg-primary opacity-[0.02] blur-[120px] rounded-full" />
+
+frontend\src\components\lms\ExamRadio.tsx:
+  64              // CASE: Irrelevant option (Dimmed)
+  65:             containerStyle += "border-transparent opacity-50";
+  66            }
+
+  71                ? "border-primary bg-primary/5"
+  72:               : "border-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800";
+  73          }
+
+frontend\src\components\sidebar\AppSidebar.tsx:
+   63        isActive: true,
+   64:       roles: ["admin", "teacher", "student", "mentor"],
+   65        items: [
+
+   68            url: "/dashboard",
+   69:           roles: ["admin", "teacher", "student", "mentor"],
+   70          },
+
+   81        icon: School,
+   82:       roles: ["admin", "teacher", "student", "mentor"],
+   83        items: [
+
+  110        icon: Video,
+  111:       roles: ["admin", "teacher", "student", "mentor"],
+  112        items: [{ title: "Video Rooms", url: "/video" }],
+
+  121          { title: "Teachers", url: "/users/teachers", roles: ["admin"] },
+  122:         { title: "Mentors", url: "/users/mentors", roles: ["admin"] },
+  123          { title: "Admins", url: "/users/admins", roles: ["admin"] },
+
+  210        {/* Decorative background pattern */}
+  211:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  212  
+
+frontend\src\components\sidebar\nav-main.tsx:
+  92                            "relative flex w-full items-center rounded-md px-4 py-2 text-sm text-gray-600 transition-all",
+  93:                           "bg-transparent hover:bg-white/70 hover:text-gray-900 dark:hover:bg-gray-800/70 dark:hover:text-gray-200",
+  94                            subItem.isActive &&
+
+frontend\src\components\timetable\TimetableGrid.tsx:
+  19          <div className="flex flex-col items-center gap-2">
+  20:           <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+  21            <p className="text-muted-foreground text-sm">Loading schedule...</p>
+
+frontend\src\components\ui\badge.tsx:
+  12          default:
+  13:           "border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90",
+  14          secondary:
+  15:           "border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90",
+  16          destructive:
+  17:           "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+  18          outline:
+
+frontend\src\components\ui\calendar.tsx:
+  35        className={cn(
+  36:         "bg-background group/calendar p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
+  37          String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
+
+frontend\src\components\ui\chart.tsx:
+   57          className={cn(
+   58: ⟪ 309 characters skipped ⟫recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border flex aspect-video justify-center text-xs [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-hidden [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-surface]:outline-hidden",
+   59            className
+
+  210                                "w-1": indicator === "line",
+  211:                               "w-0 border-[1.5px] border-dashed bg-transparent":
+  212                                  indicator === "dashed",
+
+frontend\src\components\ui\command.tsx:
+  73          className={cn(
+  74:           "placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
+  75            className
+
+frontend\src\components\ui\empty.tsx:
+  35        variant: {
+  36:         default: "bg-transparent",
+  37          icon: "bg-muted text-foreground flex size-10 shrink-0 items-center justify-center rounded-lg [&_svg:not([class*='size-'])]:size-6",
+
+frontend\src\components\ui\input-group.tsx:
+   74          }
+   75:         e.currentTarget.parentElement?.querySelector("input")?.focus()
+   76        }}
+
+  138        className={cn(
+  139:         "flex-1 rounded-none border-0 bg-transparent shadow-none focus-visible:ring-0 dark:bg-transparent",
+  140          className
+
+  154        className={cn(
+  155:         "flex-1 resize-none rounded-none border-0 bg-transparent py-3 shadow-none focus-visible:ring-0 dark:bg-transparent",
+  156          className
+
+frontend\src\components\ui\input.tsx:
+  10        className={cn(
+  11:         "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+  12          "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+
+frontend\src\components\ui\item.tsx:
+  33  const itemVariants = cva(
+  34:   "group/item flex items-center border border-transparent text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+  35    {
+
+  37        variant: {
+  38:         default: "bg-transparent",
+  39          outline: "border-border",
+
+  78        variant: {
+  79:         default: "bg-transparent",
+  80          icon: "size-8 border rounded-sm bg-muted [&_svg:not([class*='size-'])]:size-4",
+
+frontend\src\components\ui\multi-select.tsx:
+  124          className={cn(
+  125:           "flex h-auto min-h-9 w-fit items-center justify-between gap-2 overflow-hidden rounded-md border border-input bg-transparent px-3 py-1.5 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-[placeholder]:text-muted-foreground dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground",
+  126            className,
+
+frontend\src\components\ui\scroll-area.tsx:
+  42          orientation === "vertical" &&
+  43:           "h-full w-2.5 border-l border-l-transparent",
+  44          orientation === "horizontal" &&
+  45:           "h-2.5 flex-col border-t border-t-transparent",
+  46          className
+
+frontend\src\components\ui\select.tsx:
+  37        className={cn(
+  38:         "border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  39          className
+
+frontend\src\components\ui\sidebar.tsx:
+  209          className={cn(
+  210:           "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
+  211            "group-data-[collapsible=offcanvas]:w-0",
+
+frontend\src\components\ui\switch.tsx:
+  15        className={cn(
+  16:         "peer data-[state=checked]:bg-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
+  17          className
+
+frontend\src\components\ui\tabs.tsx:
+  44        className={cn(
+  45:         "data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  46          className
+
+frontend\src\components\ui\textarea.tsx:
+   9        className={cn(
+  10:         "border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 flex field-sizing-content min-h-16 w-full rounded-md border bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+  11          className
+
+frontend\src\components\ui\toggle.tsx:
+  11        variant: {
+  12:         default: "bg-transparent",
+  13          outline:
+  14:           "border border-input bg-transparent shadow-xs hover:bg-accent hover:text-accent-foreground",
+  15        },
+
+frontend\src\pages\Dashboard.tsx:
+  57          {/* Decorative background pattern */}
+  58:         <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  59          <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+  81        {/* Decorative background pattern */}
+  82:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  83        
+
+frontend\src\pages\Home.tsx:
+  130                    onClick={() => setShowDonateModal(true)}
+  131:                   className="bg-transparent border border-border text-foreground/80 px-12 py-5 rounded-lg font-semibold text-base hover:border-primary hover:text-primary transition-all"
+  132                  >
+
+frontend\src\pages\Login.tsx:
+   46        <div className="relative flex flex-col justify-center p-6 md:p-8 bg-background overflow-hidden">
+   47:         <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.15] pointer-events-none" />
+   48          <div className="absolute top-0 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+  184          </div>
+  185:         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-transparent" />
+  186:         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+  187          <div className="absolute top-1/4 left-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+
+frontend\src\pages\Register.tsx:
+   68        <div className="relative flex flex-col justify-center p-6 md:p-8 bg-background overflow-hidden">
+   69:         <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.15] pointer-events-none" />
+   70          <div className="absolute top-0 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+  229          </div>
+  230:         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-transparent" />
+  231:         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+  232          <div className="absolute top-1/4 left-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+
+frontend\src\pages\academics\Attendance.tsx:
+   25    const isStudent = user?.role === "student";
+   26:   const isParent = user?.role === "parent";
+   27  
+
+  104        {/* Decorative background */}
+  105:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  106        <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+  153                      onChange={(e) => setSelectedDate(e.target.value)}
+  154:                     className="flex h-10 w-full rounded-md border border-border bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+  155                    />
+
+  206          ) : (
+  207:           // Student/Parent view
+  208            <AttendanceHistory userId={user?._id} role={user?.role} />
+
+frontend\src\pages\activities\ActivitiesLog.tsx:
+  102          return <Badge className="bg-green-100 text-green-700 hover:bg-green-100">Student</Badge>;
+  103:       case "mentor":
+  104:         return <Badge className="bg-amber-100 text-amber-700 hover:bg-amber-100">Mentor</Badge>;
+  105        default:
+
+  253        {/* Decorative background */}
+  254:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  255        <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+frontend\src\pages\finance\Expenses.tsx:
+  86        {/* Decorative background */}
+  87:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  88        <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+frontend\src\pages\finance\FeeCollection.tsx:
+  88        {/* Decorative background */}
+  89:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  90        <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+frontend\src\pages\finance\Salary.tsx:
+  87        {/* Decorative background */}
+  88:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  89        <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+frontend\src\pages\lms\Assignments.tsx:
+  98        {/* Decorative background */}
+  99:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  100        <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+frontend\src\pages\lms\StudyMaterials.tsx:
+  112        {/* Decorative background */}
+  113:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  114        <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+frontend\src\pages\lms\VisualGenerator.tsx:
+  131        {/* Decorative background */}
+  132:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] bg-size:24px 24px opacity-[0.03] pointer-events-none" />
+  133        <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+frontend\src\pages\lms\Visuals.tsx:
+  121        {/* Decorative background */}
+  122:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  123        <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+frontend\src\pages\routes\router.tsx:
+  73            {
+  74:             path: "users/mentors",
+  75              element: (
+  76                <UserManagementPage
+  77:                 role="mentor"
+  78:                 title="Mentors"
+  79:                 description="Manage Mentors."
+  80                />
+
+frontend\src\pages\settings\RolesPermissions.tsx:
+   80              _id: "4",
+   81:             name: "mentor",
+   82:             label: "Mentors",
+   83              permissions: modules.map((m) => ({
+
+  149        {/* Decorative background */}
+  150:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  151        <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+frontend\src\pages\settings\SchoolSettings.tsx:
+  104        {/* Decorative background */}
+  105:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  106        <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+frontend\src\pages\video\VideoCall.tsx:
+  165        {/* Decorative background */}
+  166:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  167        <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+
+frontend\src\pages\video\VideoRooms.tsx:
+  89        {/* Decorative background */}
+  90:       <div className="absolute inset-0 bg-[radial-gradient(var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+  91        <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
